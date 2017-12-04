@@ -1,4 +1,4 @@
-package main;
+package weigher;
 
 import com.github.steveash.maxclique.Weigher;
 import com.google.common.collect.HashBasedTable;

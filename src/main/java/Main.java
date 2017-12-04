@@ -1,8 +1,7 @@
-package main;
-
 import com.github.steveash.maxclique.Clique;
 import com.github.steveash.maxclique.Cliques;
-import com.github.steveash.maxclique.Weigher;
+import parser.GraphParser;
+import weigher.MyWeigher;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +11,10 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args ) {
+        GraphParser parser = new GraphParser("src/main/resources/input-2.xml");
+        parser.getGraph();
+        
+
         List<String> nodesInMyGraph = Arrays.asList("0", "1", "2", "3", "4", "5");
 
         // need to make an insteance of Weigher<T> which knows how to produce a "weight" (double)
