@@ -6,38 +6,38 @@
 
 	<node id="Marek">
 		<attr name="name">
-			<string>Marek</string>		
-		</attr>		
+			<string>Marek</string>
+		</attr>
 	</node>
 
 	<node id="Andrzej">
 		<attr name="name">
-			<string>Andrzej</string>		
-		</attr>		
+			<string>Andrzej</string>
+		</attr>
 	</node>
 
 	<node id="Pawel">
 		<attr name="name">
-			<string>Pawel</string>		
-		</attr>		
+			<string>Pawel</string>
+		</attr>
 	</node>
 
 	<node id="Monika">
 		<attr name="name">
-			<string>Monika</string>		
-		</attr>		
+			<string>Monika</string>
+		</attr>
 	</node>
 
 	<node id="Ewa">
 		<attr name="name">
-			<string>Ewa</string>		
-		</attr>		
+			<string>Ewa</string>
+		</attr>
 	</node>
 
 	<node id="Ania">
 		<attr name="name">
-			<string>Ania</string>		
-		</attr>		
+			<string>Ania</string>
+		</attr>
 	</node>
 
     <edge id="e1" to="Marek" from="Monika">

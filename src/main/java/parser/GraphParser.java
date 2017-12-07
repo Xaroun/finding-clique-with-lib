@@ -17,10 +17,13 @@ import java.util.List;
  */
 public class GraphParser {
 
-    private Document document;
+    private List<String> nodes;
+    private List<Edge> edges;
 
     public GraphParser(String path) {
-        this.document = getXMLDocumentFromFile(path);
+        Document document = getXMLDocumentFromFile(path);
+        this.nodes = fetchNodesFromDocument(document);
+        this.edges = fetchEdgesFromDocument(document);
     }
 
     private Document getXMLDocumentFromFile(String path) {
@@ -39,19 +42,7 @@ public class GraphParser {
         return document;
     }
 
-    public void getGraph() {
-        List<String> nodes = fetchNodesFromDocument();
-        List<Edge> edges = fetchEdgesFromDocument();
-
-//        nodes.stream().forEach(node -> graph.addVertex(node));
-//        edges.stream().forEach(edge -> {
-//            DefaultWeightedEdge defaultEdge = graph.addEdge(edge.getFrom(), edge.getTo());
-//            graph.setEdgeWeight(defaultEdge, edge.getWeight());
-//        });
-
-    }
-
-    private List<String> fetchNodesFromDocument() {
+    private List<String> fetchNodesFromDocument(Document document) {
         List<String> nodes = new ArrayList<>();
         for (int i = 0; i < document.getElementsByTagName("node").getLength(); i++) {
             nodes.add(document.getElementsByTagName("node").item(i).getTextContent());
@@ -59,16 +50,31 @@ public class GraphParser {
         return nodes;
     }
 
-    private List<Edge> fetchEdgesFromDocument() {
+    private List<Edge> fetchEdgesFromDocument(Document document) {
         List<Edge> edges = new ArrayList<>();
         for(int i = 0; i < document.getElementsByTagName("edge").getLength(); i++) {
             String edgeFrom = document.getElementsByTagName("edge").item(i).getAttributes().getNamedItem("from").getTextContent();
             String edgeTo = document.getElementsByTagName("edge").item(i).getAttributes().getNamedItem("to").getTextContent();
-            int weight = Integer.parseInt(document.getElementsByTagName("edge").item(i).getFirstChild().getNextSibling().getTextContent());
+            int weight = Integer.parseInt(document.getElementsByTagName("edge").item(i).getFirstChild().getNextSibling().getTextContent().trim());
 
             edges.add(new Edge(edgeTo, edgeFrom, weight));
         }
         return edges;
     }
 
+    public List<String> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<String> nodes) {
+        this.nodes = nodes;
+    }
+
+    public List<Edge> getEdges() {
+        return edges;
+    }
+
+    public void setEdges(List<Edge> edges) {
+        this.edges = edges;
+    }
 }

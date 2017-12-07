@@ -1,7 +1,9 @@
 import com.github.steveash.maxclique.Clique;
 import com.github.steveash.maxclique.Cliques;
+import model.Edge;
 import parser.GraphParser;
 import weigher.MyWeigher;
+import weigher.WeigherFactory;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,22 +14,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args ) {
         GraphParser parser = new GraphParser("src/main/resources/input-2.xml");
-        parser.getGraph();
-        
 
-        List<String> nodesInMyGraph = Arrays.asList("0", "1", "2", "3", "4", "5");
+        WeigherFactory factory = new WeigherFactory(parser.getEdges());
+        MyWeigher weigher = factory.createWeigher();
 
-        // need to make an insteance of Weigher<T> which knows how to produce a "weight" (double)
-        // given two nodes (T's) from the graph; any weights <= 0 are treated as negative infinity
-        MyWeigher w = new MyWeigher();
-        w.put("0", "1", 10.0);
-        w.put("1", "2", 10.0);
-        w.put("0", "2", 10.0);
-
-        // find the maximum clique in the graph
-        Clique<String> maximumClique = Cliques.findMaximum(nodesInMyGraph, w);
-
-        // the members of the clique will be in the set: maximumClique.members()
+        Clique<String> maximumClique = Cliques.findMaximum(parser.getNodes(), weigher);
         System.out.println(maximumClique.members());
     }
 }
