@@ -18,7 +18,8 @@ public class Main {
         WeigherFactory factory = new WeigherFactory(parser.getEdges());
         MyWeigher weigher = factory.createWeigher();
 
-        Clique<String> maximumClique = Cliques.findMaximum(parser.getNodes(), weigher);
-        System.out.println(maximumClique.members());
+        Clique<String> largestClique = Cliques.findMaximum(parser.getNodes(), weigher);
+        System.out.println("Largest clique is: " + largestClique.members());
+        System.out.println("Total weight in this clique = " + largestClique.totalWeight());
     }
 }
